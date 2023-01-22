@@ -1,6 +1,7 @@
 import docx2txt
 import glob
-import pandas as pd 
+import pandas as pd
+from sortedcollections import OrderedSet
 
 # Your doc file directory root path
 rootdir = "D:\Dataset Scraping\Data"
@@ -12,7 +13,7 @@ for file in glob.glob(f'{rootdir}/*/*.docx'):
     try:
         text = docx2txt.process(file)
 
-        song_verse_set = set(text.split('\n\n\n\n'))
+        song_verse_set = OrderedSet(text.split('\n\n\n\n'))
         song_verse_list = list(song_verse_set)
 
         temp = name.split("\\")
