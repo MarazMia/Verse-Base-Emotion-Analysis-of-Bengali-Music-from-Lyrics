@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verse-Based Emotion Analysis of Bengali Music from Lyrics Using Machine Learning
+        and Neural Network Classifies</title>
+
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <form action="{{url_for('predict')}}" , method="post">
+            <h3>Give your Bengali song here!</h3>
+            <!-- <input type="text" name="song" placeholder="full song" required="required" width="48" height="480"> -->
+            <textarea id="song_input" name="song_input" rows="20" cols="50">{{original_text}}</textarea>
+            <br><br>
+            <button type="submit">Predict</button>
+        </form>
+        <h3>Result</h3>
+        <textarea id="song_output" rows="5" cols="50">{{prediction_text}}</textarea>
+    </div>
+</body>
+
+</html>
