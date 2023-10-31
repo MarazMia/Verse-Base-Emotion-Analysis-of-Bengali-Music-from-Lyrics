@@ -44,19 +44,19 @@ def predict():
     for i in range(len(verses)):  
         prediction1 = model1.predict([verses[i]])
         if prediction1==1:
-            output += "verse " + str(i+1) + " emotion : " + "Positively "
+            output += "verse " + str(i+1) + ': ' + verses[i] + "\nemotion : " + "Positively "
         else:
-            output += "verse " + str(i+1) + " emotion : " + "Negatively "
+            output += "verse " + str(i+1) + ': ' + verses[i] + "\nemotion : " + "Negatively "
 
         prediction2 = model2.predict([verses[i]])
         if prediction2==1:
-            output += "Love.\n"
+            output += "Love.\n\n"
         elif prediction2==2:
-            output += "Sad.\n"
+            output += "Sad.\n\n"
         else:
-            output += "Life Oriented.\n"  
+            output += "Life Oriented.\n\n"  
 
-    return render_template('index.html', prediction_text='{}'.format(output), original_text = original_verses)
+    return render_template('index.html', prediction_text='{}'.format(output), original_text=int_features)
 
 
 if __name__ == "__main__":

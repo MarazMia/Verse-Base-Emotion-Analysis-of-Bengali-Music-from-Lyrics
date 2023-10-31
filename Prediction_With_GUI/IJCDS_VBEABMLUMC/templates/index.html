@@ -6,20 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verse-Based Emotion Analysis of Bengali Music from Lyrics Using Machine Learning
         and Neural Network Classifies</title>
-
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
 
-<body>
+<body style="font-family:verdana">
+
+    <script type="text/javascript">
+        function EnableDisable(txt) {
+            //Reference the Button.
+            var btnSubmit = document.getElementById("btnSubmit");
+
+            //Verify the TextBox value.
+            if (txt.value.trim() != "") {
+                //Enable the TextBox when TextBox has value.
+                btnSubmit.disabled = false;
+            } else {
+                //Disable the TextBox when TextBox is empty.
+                btnSubmit.disabled = true;
+            }
+        };
+
+        function Reset_All() {
+            //Reference the Button.
+            var input_text_area = document.getElementById("song_input");
+            var output_text_area = document.getElementById("song_output");
+
+
+            input_text_area.value = "";
+
+            output_text_area.value = "";
+        };
+    </script>
+
+
     <div style="text-align: center;">
-        <form action="{{url_for('predict')}}" , method="post">
-            <h3>Give your Bengali song here!</h3>
+        <form action="{{url_for('predict')}}" , method="post" id="input_form">
+            <h3 id="input_heading">Give your Bengali song here!</h3>
             <!-- <input type="text" name="song" placeholder="full song" required="required" width="48" height="480"> -->
-            <textarea id="song_input" name="song_input" rows="20" cols="50">{{original_text}}</textarea>
+            <textarea id="song_input" name="song_input" rows="10" cols="50"
+                onkeyup="EnableDisable(this)">{{original_text}}</textarea>
             <br><br>
-            <button type="submit">Predict</button>
+            <button type="submit" class="submit-button" id="btnSubmit" disabled="disabled">Predict</button>
+            <div class="reset-button" id="btnReset" onclick="Reset_All()">Reset</div>
+            <h3 id="Result">Result</h3>
+            <textarea disabled id="song_output" rows="10" cols="50">{{prediction_text}}</textarea>
         </form>
-        <h3>Result</h3>
-        <textarea id="song_output" rows="5" cols="50">{{prediction_text}}</textarea>
     </div>
 </body>
 
